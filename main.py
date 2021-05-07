@@ -89,7 +89,7 @@ class Parser:
             for index, product in enumerate(products):
                 if int(self.get_article(product)) == int(article):
                     user.data["process"] = False
-                    user.send(f"Продукт {article} найден на странице {page}. Позиция товара: {index + 1}\n" +
+                    user.send(f"Продукт {article} найден на странице {page}. Позиция товара: {index}\n" +
                               f"{self.bot.data['end_text']}")
                     return
 
