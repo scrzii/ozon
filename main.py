@@ -1,6 +1,7 @@
 import configparser
 import math
 from time import time
+from time import sleep
 
 from selenium.webdriver.chrome.options import Options
 
@@ -78,14 +79,19 @@ class Parser:
 
         page = 1
         while True:
+            print(f"page {page}")
             wd.get(f"https://www.ozon.ru/search/?from_global=true&text={request}&page={page}")
+            sleep(1)
             products = wd.find_elements_by_css_selector("[class='a0c4']")
             if not products:
                 user.data["process"] = False
                 user.send(f"Товар {article} не найден по запросу {request}")
                 return
 
+            print(len(products))
+
             for index, product in enumerate(products):
+                print(self.get_article(product), article)
                 if int(self.get_article(product)) == int(article):
                     user.data["process"] = False
                     user.send(f"Продукт {article} найден на странице {page}. Позиция товара: {index + 1}\n" +
@@ -93,7 +99,7 @@ class Parser:
                     return
 
             page += 1
-            if page == 20:
+            if page == 10:
                 page = 1000000
 
     def stop(self):
