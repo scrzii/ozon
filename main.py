@@ -51,7 +51,7 @@ class Parser:
         options = Options()
         options.add_argument("--no-sandbox")
         if not windows_os:
-            options.add_argument("--headless")
+            pass
 
         options.add_experimental_option("prefs", {"profile.default_content_setting_values": {"images": 2}})
         self.bot = bot
