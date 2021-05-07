@@ -93,6 +93,8 @@ class Parser:
                     return
 
             page += 1
+            if page == 20:
+                page = 1000000
 
     def stop(self):
         self.scheduler.stop()
