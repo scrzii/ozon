@@ -62,7 +62,7 @@ class Parser:
         a = product.find_elements_by_tag_name("a")
         try:
             href = a[0].get_attribute("href")
-            return int(href.split("/?")[0].split("-")[-1])
+            return int(href.split("/?")[0].split("-")[-1].split("/")[-1])
         except:
             return 0
 
