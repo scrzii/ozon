@@ -62,7 +62,6 @@ class Parser:
         a = product.find_elements_by_tag_name("a")
         try:
             href = a[0].get_attribute("href")
-            print(href.split("/?")[0].split("-")[-1])
             return int(href.split("/?")[0].split("-")[-1])
         except:
             return 0
@@ -89,7 +88,7 @@ class Parser:
             for index, product in enumerate(products):
                 if int(self.get_article(product)) == int(article):
                     user.data["process"] = False
-                    user.send(f"Продукт {article} найден на странице {page}. Позиция товара: {index}\n" +
+                    user.send(f"Продукт {article} найден на странице {page}. Позиция товара: {index + 1}\n" +
                               f"{self.bot.data['end_text']}")
                     return
 
